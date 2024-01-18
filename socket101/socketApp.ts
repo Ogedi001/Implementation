@@ -1,7 +1,5 @@
-import express, { Response, Request, NextFunction } from "express";
+import express from "express";
 import { createServer } from "http";
-
-import { Server, Socket } from "socket.io";
 import { ConfigureSocketIO } from "./socket_Config";
 import { applicationRoute } from "./indexRoute";
 

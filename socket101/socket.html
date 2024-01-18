@@ -79,6 +79,13 @@
           offset:undefined
         }
       });
+      
+      const socket1 = io('/users',{
+        auth:{
+          token:1,
+        }
+      });
+      console.log(socket1);
       console.log(socket);
       let username;
 

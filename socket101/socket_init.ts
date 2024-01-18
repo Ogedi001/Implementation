@@ -5,7 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 
 export const initialSocket = (io: Server): Promise<void> => {
   return new Promise((resolve, reject) => {
-    socketServerMiddleware(io)
+    //middleware
+    //socketServerMiddleware(io)
     io.on("connection", (socket) => {
       socketInstanceAuth(socket, 'message');
 
