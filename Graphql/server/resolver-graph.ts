@@ -2,6 +2,8 @@ import db from "./dB";
 
 // Resolver fetches data for each field in the schema
 export const resolvers = {
+
+    //run query entry point
   Query: {
     //resolver to return all array of a particular field
     games() {
@@ -25,4 +27,16 @@ export const resolvers = {
       return db.authors.find((author) => author.id === arg.id);
     },
   },
+
+  //apollo run  Game entry point
+  Game: {
+    //parent id is the game id
+    reviews(parent: { id: string }) {
+      return db.reviews.filter((r) => r.game_id === parent.id);
+    },
+  },
+
+Author:{
+    
+}
 };

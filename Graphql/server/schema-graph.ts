@@ -8,16 +8,19 @@ enum Role{
         MODERATOR
     }
 
-type Game{
+type Game { 
 id: ID!
 title: String!
 platform:[String!]!
+reviews:[Review!]
 }
 
 type Review {
     id:ID!
     rating:Int!
     content:String!
+    author:Author!
+    game:Game!
 }
 
 type Author{
@@ -25,6 +28,7 @@ type Author{
     name:String!
     role: Role!
     verified:Boolean!
+    reviews:[Review!]
 }
 # entry point for our query
   type Query {
