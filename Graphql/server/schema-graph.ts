@@ -39,7 +39,52 @@ type Author{
     authors:[Author]
     author(id:ID!):Author
   }
+
+
+# Game input
+input AddGameInput{
+    title: String!
+platform:[String!]!  
+}
+
+input EditGameInput{
+    title: String
+platform:[String!] 
+}
+
+#Author Input
+input AddAuthorInput{
+    name:String!
+    role: Role!
+    verified:Boolean!
+}
+input AddAuthorInput{
+    name:String!
+    role: Role!
+    verified:Boolean!
+}
+
+input EditAuthorInput{
+    name:String
+    role: Role
+    verified:Boolean
+}
+
+
+type Mutation {
+    deleteGame(id:ID!):[Game]
+    addGame(input:AddGameInput!):Game
+    updateGame( id:ID!, edits:EditGameInput):Game
+
+    deleteAuthor(id:ID!):[Author]
+    addAuthor(input:AddAuthorInput):Author
+    updateAuthor(id:ID!,edits:EditAuthorInput):Author
+}
+
+
+
   schema{
     query:Query
+    mutation:Mutation
   }
 `;
