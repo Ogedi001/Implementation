@@ -9,7 +9,8 @@
     "pg": "nodemon postgress.ts",
     "socket": "nodemon socket101/socketApp.ts",
     "ws": "nodemon websocke.ts",
-    "graph": "nodemon Graphql/server.ts"
+    "graph": "nodemon Graphql/server.ts",
+    "mail":"nodemon nodeMailer/nodemailer-server.ts"
   },
   "author": "\"ogedi.f.u\"",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "graphql": "^16.8.1",
+    "nodemailer": "^6.9.11",
     "pg": "^8.11.3",
     "socket.io": "^4.7.2",
     "uuid": "^9.0.1",
@@ -30,6 +32,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.10.6",
+    "@types/nodemailer": "^6.4.14",
     "@types/pg": "^8.10.9",
     "@types/uuid": "^9.0.7",
     "@types/ws": "^8.5.10",
