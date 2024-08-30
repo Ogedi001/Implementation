@@ -1,0 +1,55 @@
+import AppError from "../utils/appError.js";
+
+const notFoundHandler = (req, res, next) => {
+  next(
+    new AppError(
+      404,
+      `Your requested url ${req.originalUrl} was not found on this server!`
+    )
+  );
+};
+
+const sendDevErrorResponse = (error, res) => {
+  res.status(error.statusCode).json({
+    success: error.success,
+    message: error.message,
+    error,
+    stack: error.stack,
+  });
+};
+
+const sendProdErrorResponse = (error, res) => {
+  if (error.isOperational) {
+    return res.status(error.statusCode).json({
+      success: error.success,
+      message: error.message,
+      error,
+    });
+  } else {
+    console.error("ERROR ⛔", error);
+
+    return res.status(500).json({
+      success: false,
+      message: `${error.message}$` || `Something went wrong on the server`,
+    });
+  }
+};
+
+const defaultErrorHandler = (error, req, res, next) => {
+  error.statusCode = error.statusCode || 500;
+  error.success = error.success || false;
+
+  if (process.env.NODE_ENV === "development") {
+    sendDevErrorResponse(error, res);
+  } else if (process.env.NODE_ENV === "production") {
+    if (error instanceof AppError) {
+      // Operational, trusted error: send message to client
+      sendProdErrorResponse(error, res);
+    } else {
+      // Programming or other unknown error: don't leak details to client
+      sendProdErrorResponse(error, res);
+    }
+  }
+};
+
+export const ErrorHandlers = { defaultErrorHandler, notFoundHandler };
